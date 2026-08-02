@@ -9,6 +9,7 @@ export const API_ENDPOINTS = {
 
   PROPERTY: {
     ALL: "/landlord/properties",
+    SINGLE: (id: string) => `/landlord/properties/${id}`,
   },
 
   CATEGORY: {
