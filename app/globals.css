@@ -69,7 +69,7 @@
   --muted-foreground: oklch(0.48 0.02 255);
 
   /* Emerald */
-  --accent: oklch(0.72 0.16 160);
+  --accent: oklch(0.56 0.22 276);
   --accent-foreground: oklch(0.99 0 0);
 
   --destructive: oklch(0.63 0.24 25);

@@ -8,5 +8,8 @@ export const propertyService = {
     },
     getPropertyById(id: string){
         return api.get<IProperty>(API_ENDPOINTS.PROPERTY.SINGLE(id))
+    },
+    addProperty(){
+        return api.post<IProperty>(API_ENDPOINTS.PROPERTY.ADD)
     }
 }

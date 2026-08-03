@@ -13,7 +13,6 @@ const PropertyGrid = () => {
       if (isError) {
         return <p>Something went wrong.</p>;
       }
-      console.log(isError)
   return (
      <section className="py-24">
       <div className="container mx-auto px-4">

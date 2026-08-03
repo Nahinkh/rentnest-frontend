@@ -1,16 +1,17 @@
-import { Home } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
+import { Home } from "lucide-react";
+import Link from "next/link";
+import React from "react";
 
 const Logo = () => {
   return (
-    <Link href="/" className="flex items-center gap-2">
-        <div className='bg-primary-500 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold'>
-            <Home size={20} />
-        </div>
-
+    <Link
+      href="/"
+      className="font-semibold tracking-tight text-lg flex items-center gap-2"
+    >
+      <span className="h-2 w-2 rounded-full bg-primary" />
+      Vesta.
     </Link>
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;

@@ -1,8 +1,9 @@
-import { House } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
+import GuestRoute from "@/components/auth/GuestRoute";
+import { House } from "lucide-react";
+import Link from "next/link";
+import React from "react";
 
-const AuthLayout = ({children}: {children: React.ReactNode}) => {
+const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       <div className="container mx-auto flex min-h-screen items-center justify-center px-4 py-10">
@@ -17,9 +18,7 @@ const AuthLayout = ({children}: {children: React.ReactNode}) => {
 
                 <div>
                   <h1 className="text-2xl font-bold">RentNest</h1>
-                  <p className="text-sm opacity-80">
-                    Find Your Perfect Home
-                  </p>
+                  <p className="text-sm opacity-80">Find Your Perfect Home</p>
                 </div>
               </Link>
             </div>
@@ -30,8 +29,8 @@ const AuthLayout = ({children}: {children: React.ReactNode}) => {
               </h2>
 
               <p className="max-w-md text-lg opacity-90">
-                Discover verified rental properties, connect with
-                landlords, and manage your rentals in one place.
+                Discover verified rental properties, connect with landlords, and
+                manage your rentals in one place.
               </p>
             </div>
 
@@ -44,27 +43,21 @@ const AuthLayout = ({children}: {children: React.ReactNode}) => {
           <div className="flex items-center justify-center p-6 md:p-10">
             <div className="w-full max-w-md">
               <div className="mb-8 text-center lg:hidden">
-                <Link
-                  href="/"
-                  className="inline-flex items-center gap-2"
-                >
+                <Link href="/" className="inline-flex items-center gap-2">
                   <div className="rounded-lg bg-primary p-2 text-primary-foreground">
                     <House className="size-5" />
                   </div>
 
-                  <span className="text-2xl font-bold">
-                    RentNest
-                  </span>
+                  <span className="text-2xl font-bold">RentNest</span>
                 </Link>
               </div>
-
-              {children}
+              <GuestRoute>{children}</GuestRoute>
             </div>
           </div>
         </div>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default AuthLayout
+export default AuthLayout;

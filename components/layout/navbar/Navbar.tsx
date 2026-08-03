@@ -1,24 +1,36 @@
-import React from 'react'
-import Logo from './Logo'
-import NavLinks from './NavLinks'
-import UserMenu from './UserMenu'
-import MobileMenu from './MobileMenu'
+"use client";
+import React, { useState } from "react";
+import Logo from "./Logo";
+import NavLinks from "./NavLinks";
+import UserMenu from "./UserMenu";
+import MobileMenu from "./MobileMenu";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import DesktopNav from "./DesktopNav";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-       <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-md">
-      <div className="container mx-auto flex h-18 items-center justify-between px-4">
-        <div className="flex items-center gap-10">
-          <Logo />
-          <NavLinks />
-        </div>
+   <header className="border-b border-border/45 sticky top-0 bg-background/80 backdrop-blur-md z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        
+        {/* Brand Logo */}
+        <Logo />
 
+        {/* Desktop Navigation Links */}
+        <DesktopNav/>
+
+        {/* Desktop Authentication Section */}
         <UserMenu />
 
+        {/* Mobile / Tablet Menu Trigger */}
         <MobileMenu />
+
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
