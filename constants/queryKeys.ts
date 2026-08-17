@@ -10,6 +10,7 @@ export const QUERY_KEYS = {
         MY_RENTAL_REQUESTS: ["my-rental-requests"] as const,
         LAND_LORD_RENTAL_REQUESTS: ["landlord-rental-requests"] as const,
     },
+    PROPERTIES_BY_LANDLORD: ["properties-by-landlord"] as const,
     PAYMENT: {
         HISTORY: ["payment-history"] as const,
     },

@@ -27,6 +27,7 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
     landlord: [
       { title: "Overview", href: "/dashboard/landlord", icon: LayoutDashboard },
       { title: "Manage Properties", href: "/dashboard/landlord/manage-properties", icon: Home},
+      { title: "Rental Requests", href: "/dashboard/landlord/rental-request", icon: FileText },
       { title: "Tenant Leases", href: "/dashboard/landlord/leases", icon: FileText },
       { title: "Add Property", href: "/dashboard/landlord/add-property", icon: Home},
       { title: "Maintenance Logs", href: "/dashboard/landlord/maintenance", icon: Wrench },

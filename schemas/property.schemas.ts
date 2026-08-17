@@ -12,9 +12,23 @@ export const propertySchema = z.object({
   division: z.string().min(2, "Division is required"),
   latitude: z.coerce.number().min(-90).max(90),
   longitude: z.coerce.number().min(-180).max(180),
-  categoryName: z.string().min(1, "Category is required"),
+  category: z.string().min(1, "Category is required"),
   categoryDescription: z.string().optional(),
-  images: z.array(z.string().url("Each image must be a valid URL")).min(1, "At least one image is required"),
+  images: z
+    .array(z.instanceof(File))
+    .min(1, "At least one image is required")
+    .max(10, "You can upload a maximum of 10 images")
+    .refine(
+      (files) =>
+        files.every((file) =>
+          ["image/jpeg", "image/png", "image/webp"].includes(file.type),
+        ),
+      "Only JPG, PNG, and WEBP images are allowed",
+    )
+    .refine(
+      (files) => files.every((file) => file.size <= 5 * 1024 * 1024),
+      "Each image must be smaller than 5MB",
+    ),
 });
 
 export type PropertyFormData = z.infer<typeof propertySchema>;

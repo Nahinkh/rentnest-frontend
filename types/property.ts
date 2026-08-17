@@ -1,9 +1,9 @@
-export interface ICategory {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-}
+// export interface ICategory {
+//   id: string;
+//   name: string;
+//   slug: string;
+//   description: string;
+// }
 
 export interface ILandlord {
   name: string;
@@ -11,7 +11,6 @@ export interface ILandlord {
 }
 
 export interface IProperty {
-  id: string;
   title: string;
   description: string;
 
@@ -36,8 +35,8 @@ export interface IProperty {
   createdAt: string;
   updatedAt: string;
 
-  category: ICategory;
+  category: string;
   landlord: ILandlord;
 
-  images: string[];
+  images: File[];
 }

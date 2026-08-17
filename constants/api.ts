@@ -11,6 +11,7 @@ export const API_ENDPOINTS = {
     ALL: "/landlord/properties",
     SINGLE: (id: string) => `/landlord/properties/${id}`,
     ADD: "/landlord/properties",
+    BY_LANDLORD: `/landlord/properties/landlord`,
   },
 
   CATEGORY: {
