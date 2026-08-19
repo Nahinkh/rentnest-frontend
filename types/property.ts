@@ -9,8 +9,15 @@ export interface ILandlord {
   name: string;
   email: string;
 }
+export interface IPropertyImage {
+  id: string;
+  imageUrl: string;
+  publicId?: string;
+  createdAt?: string;
+}
 
 export interface IProperty {
+  id: string;
   title: string;
   description: string;
 
@@ -35,8 +42,13 @@ export interface IProperty {
   createdAt: string;
   updatedAt: string;
 
-  category: string;
+  category: {
+    id: string;
+    name: string;
+    slug: string;
+    description: string;
+  };
   landlord: ILandlord;
 
-  images: File[];
+  images: IPropertyImage[];
 }

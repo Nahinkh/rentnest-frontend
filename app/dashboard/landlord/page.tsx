@@ -1,9 +1,9 @@
 "use client";
 import RoleProtectedRoute from "@/components/auth/RoleProtectedRoute";
-import LandLordMetrics from "./LandLordMetrics";
 import LandLordOverview from "./LandLordOverview";
 import DashboardHeader from "../common/DashboardHeader";
-import { ShieldCheck } from "lucide-react";
+import { Building, DollarSign, ShieldCheck, Users, Wrench } from "lucide-react";
+import DashboardStatCard from "../common/DashboardStatCard";
 
 const LandlordPage = () => {
   return (
@@ -17,13 +17,45 @@ const LandlordPage = () => {
                 description="Monitor your rental portfolio, revenue, tenants, and active lease activity from one place."
                 action={{
                   label: "Add Property",
-                  href: "/landlord/properties/new"
+                  href: "/landlord/properties/new",
                 }}
                 badge="Overview"
                 badgeIcon={<ShieldCheck className="h-3.5 w-3.5 text-primary" />}
                 key={"landlord-dashboard-header"}
               />
-              <LandLordMetrics />
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <DashboardStatCard
+                  title="Total Properties"
+                  value="4 Units"
+                  description="3 Active, 1 Pending"
+                  icon={Building}
+                />
+
+                <DashboardStatCard
+                  title="Monthly Revenue"
+                  value="৳103,000"
+                  icon={DollarSign}
+                  trend={{
+                    value: "+12%",
+                    label: "from last month",
+                    direction: "up",
+                  }}
+                />
+
+                <DashboardStatCard
+                  title="Active Tenants"
+                  value="3 Tenants"
+                  description="100% occupancy rate"
+                  icon={Users}
+                />
+
+                <DashboardStatCard
+                  title="Open Maintenance"
+                  value="1 Request"
+                  description="Pending contractor response"
+                  icon={Wrench}
+                />
+              </div>
               <LandLordOverview />
             </div>
           </div>
