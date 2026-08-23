@@ -1,5 +1,4 @@
 "use client"
-import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { Badge } from '../ui/badge'
 import { ArrowUpRight, Building, MapPin } from 'lucide-react'

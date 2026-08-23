@@ -18,7 +18,7 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
   const navConfig = {
     tenant: [
       { title: "Overview", href: "/dashboard/tenant", icon: LayoutDashboard },
-      { title: "My Properties", href: "/dashboard/tenant/properties", icon: Home },
+      { title: "My Properties", href: "/dashboard/tenant/my-properties", icon: Home },
       { title: "Request History", href: "/dashboard/tenant/requests", icon: History },
       { title: "Reviews", href: "/dashboard/tenant/reviews", icon: Star },
       { title: "Billing & Payments", href: "/dashboard/tenant/billing", icon: CreditCard },
