@@ -20,3 +20,15 @@ export interface IRentalRequest {
 
   property: IProperty;
 }
+
+export type RequestFilter =
+  | "ALL"
+  | "PENDING"
+  | "APPROVED"
+  | "REJECTED"
+  | "CANCELLED";
+
+
+export  interface RequestRowProps {
+  request: IRentalRequest;
+}
