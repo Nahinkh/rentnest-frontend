@@ -2,8 +2,9 @@ import { Home } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-const Logo = () => {
+const NavbarLogo = () => {
   return (
+    
     <Link
       href="/"
       className="font-semibold tracking-tight text-lg flex items-center gap-2"
@@ -14,4 +15,4 @@ const Logo = () => {
   );
 };
 
-export default Logo;
+export default NavbarLogo;

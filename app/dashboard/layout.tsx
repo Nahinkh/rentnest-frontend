@@ -20,7 +20,7 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
       { title: "Overview", href: "/dashboard/tenant", icon: LayoutDashboard },
       { title: "My Properties", href: "/dashboard/tenant/my-properties", icon: Home },
       { title: "Request History", href: "/dashboard/tenant/request-history", icon: History },
-      { title: "Reviews", href: "/dashboard/tenant/reviews", icon: Star },
+      { title: "Reviews", href: "/dashboard/tenant/my-reviews", icon: Star },
       { title: "Billing & Payments", href: "/dashboard/tenant/billing", icon: CreditCard },
       { title: "Maintenance", href: "/dashboard/tenant/maintenance", icon: Wrench },
     ],

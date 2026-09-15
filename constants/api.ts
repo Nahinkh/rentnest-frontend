@@ -19,8 +19,13 @@ export const API_ENDPOINTS = {
     CANCEL: (id: string) => `/rental-requests/${id}/cancel`,
     CURRENT: "/tenant/current-rental",
   },
-
   CATEGORY: {
     ALL: "/categories",
   },
+  REVIEW: {
+    ALL: "/reviews",
+    CREATE: "/reviews",
+    BY_PROPERTY: (propertyId: string) => `/reviews/property/${propertyId}`,
+    BY_TENANT: (tenantId: string) => `/reviews/my-reviews/${tenantId}`,
+  }
 };
