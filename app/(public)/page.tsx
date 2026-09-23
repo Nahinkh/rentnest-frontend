@@ -1,4 +1,5 @@
-import Hero from '@/components/hero/Hero'
+
+import Hero from '@/components/home/hero/Hero'
 import WhyChoose from '@/components/home/WhyChoose'
 import PropertyGrid from '@/components/property/PropertyGrid'
 import React from 'react'
