@@ -8,7 +8,7 @@ const ThemeSwitcher = () => {
     <DropdownMenu>
       <DropdownMenuTrigger >
         <Button
-          variant="ghost"
+          variant="outline"
           size="icon"
           className="h-9 w-9 rounded-full"
           aria-label="Change theme"

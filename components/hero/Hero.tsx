@@ -1,9 +1,6 @@
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import HeroSearch from './HeroSearch'
 import { ArrowRight, MapPin, Search } from 'lucide-react'
 import { Input } from '../ui/input'
 
