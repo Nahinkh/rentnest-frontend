@@ -6,7 +6,10 @@ export const API_ENDPOINTS = {
     LOGOUT: "/auth/logout",
     REFRESH: "/auth/refresh-token",
   },
-  
+  ADMIN: {
+    DASHBOARD_STATS: "/admin/dashboard-stats",
+  },
+
   PROPERTY: {
     ALL: "/landlord/properties",
     SINGLE: (id: string) => `/landlord/properties/${id}`,
@@ -27,5 +30,5 @@ export const API_ENDPOINTS = {
     CREATE: "/reviews",
     BY_PROPERTY: (propertyId: string) => `/reviews/property/${propertyId}`,
     BY_TENANT: (tenantId: string) => `/reviews/my-reviews/${tenantId}`,
-  }
+  },
 };
