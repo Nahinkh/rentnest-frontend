@@ -8,6 +8,7 @@ export const API_ENDPOINTS = {
   },
   ADMIN: {
     DASHBOARD_STATS: "/admin/dashboard-stats",
+    USERS: "/admin/users",
   },
 
   PROPERTY: {

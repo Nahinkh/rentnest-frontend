@@ -13,7 +13,7 @@ const AdminPage = () => {
   isError,
   refetch,
 } = useAdminDashboardStats();
-  const dashboardStats  = [
+  const dashboardStats  = [   
     {
     title: "Total Users",
     value: stats?.totalUsers ?? 0,
