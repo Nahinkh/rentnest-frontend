@@ -17,6 +17,9 @@ export interface AdminUsersResponse {
   };
   data: AdminUser[];
 }
+export interface UpdateUserStatusPayload {
+  status: "ACTIVE" | "BLOCKED";
+}
 
 const getDashboardStats = async (): Promise<AdminDashboardStats> => {
   return api.get<AdminDashboardStats>(API_ENDPOINTS.ADMIN.DASHBOARD_STATS);
@@ -29,7 +32,15 @@ const getUsers = async (
   });
 };
 
+const updateUserStatus = async (
+  userId: string,
+  payload: UpdateUserStatusPayload,
+) => {
+  return api.patch(`${API_ENDPOINTS.ADMIN.USERS}/${userId}/status`, payload);
+};
+
 export const adminService = {
   getDashboardStats,
   getUsers,
+  updateUserStatus, 
 };

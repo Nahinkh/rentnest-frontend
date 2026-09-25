@@ -6,6 +6,7 @@ import { useAdminUsers } from "@/hook/admin/useAdminUsers";
 import UserManagementToolbar from "@/components/dashboard/admin/UserManagementToolbar";
 import DashboardPagination from "../../common/DashboardPagination";
 
+
 const AdminUsersPage = () => {
   const [search, setSearch] = useState("");
   const [role, setRole] = useState("all");
@@ -19,7 +20,7 @@ const AdminUsersPage = () => {
     page,
     limit: 10,
   });
-  console.log(data)
+  console.log(data);
 
   const handleClear = () => {
     setSearch("");
@@ -84,6 +85,11 @@ const AdminUsersPage = () => {
         <div className="mt-6">
           <UsersTable users={data?.data ?? []} isLoading={isLoading} />
         </div>
+        <DashboardPagination
+          page={data?.meta.page ?? 1}
+          totalPages={data?.meta.totalPage ?? 1}
+          onPageChange={setPage}
+        />
 
         {/* Result count */}
         {!isLoading && !isError && data?.meta && (
@@ -93,12 +99,6 @@ const AdminUsersPage = () => {
                 Showing {data.data.length} of {data.meta.total} users
               </p>
             </div>
-
-            <DashboardPagination
-              page={page}
-              totalPages={data.meta.totalPage}
-              onPageChange={setPage}
-            />
           </div>
         )}
       </div>

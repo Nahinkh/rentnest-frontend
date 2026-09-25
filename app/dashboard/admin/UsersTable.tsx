@@ -1,9 +1,19 @@
+"use client";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useUpdateUserStatus } from "@/hook/admin/useUpdateUserStatus";
 import { MoreHorizontal } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
+import ConfirmDialog from "../common/ConfirmDialog";
 export interface AdminUser {
   id: string;
   name: string;
@@ -35,6 +45,8 @@ const roleLabel = {
   TENANT: "Tenant",
 };
 const UsersTable = ({ users, isLoading }: UsersTableProps) => {
+  const { mutate: updateUserStatus, isPending } = useUpdateUserStatus();
+  const [selectedUser, setSelectedUser] = useState<AdminUser | null>(null);
   if (isLoading) {
     return (
       <Card className="rounded-2xl border-border/60">
@@ -156,14 +168,31 @@ const UsersTable = ({ users, isLoading }: UsersTableProps) => {
                   </td>
 
                   <td className="px-3 py-4">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="size-8"
-                      aria-label={`Actions for ${user.name}`}
-                    >
-                      <MoreHorizontal className="size-4" />
-                    </Button>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="size-8 rounded-lg"
+                          disabled={isPending}
+                          aria-label={`Actions for ${user.name}`}
+                        >
+                          <MoreHorizontal className="size-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+
+                      <DropdownMenuContent align="end" className="w-40">
+                        <DropdownMenuItem>View User</DropdownMenuItem>
+
+                        <DropdownMenuSeparator />
+
+                        <DropdownMenuItem onClick={() => setSelectedUser(user)}>
+                          {user.status === "ACTIVE"
+                            ? "Block User"
+                            : "Activate User"}
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </td>
                 </tr>
               ))}
@@ -214,13 +243,56 @@ const UsersTable = ({ users, isLoading }: UsersTableProps) => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="size-8 shrink-0"
-                aria-label={`Actions for ${user.name}`}
+                className="size-8 rounded-lg"
+                disabled={isPending}
+                onClick={() =>
+                  updateUserStatus({
+                    userId: user.id,
+                    status: user.status === "ACTIVE" ? "BLOCKED" : "ACTIVE",
+                  })
+                }
+                aria-label={
+                  user.status === "ACTIVE" ? "Block user" : "Activate user"
+                }
               >
                 <MoreHorizontal className="size-4" />
               </Button>
             </div>
           ))}
+          <ConfirmDialog  
+            open={Boolean(selectedUser)}
+            onOpenChange={(open) => {
+              if (!open) {
+                setSelectedUser(null);
+              }
+            }}
+            title={
+              selectedUser?.status === "ACTIVE"
+                ? "Block this user?"
+                : "Activate this user?"
+            }
+            description={
+              selectedUser?.status === "ACTIVE"
+                ? `Are you sure you want to block ${selectedUser?.name}?`
+                : `Are you sure you want to activate ${selectedUser?.name}?`
+            }
+            confirmText={
+              selectedUser?.status === "ACTIVE" ? "Block User" : "Activate User"
+            }
+            cancelText="Cancel"
+            destructive={selectedUser?.status === "ACTIVE"}
+            loading={isPending}
+            onConfirm={() => {
+              if (!selectedUser) return;
+
+              updateUserStatus({
+                userId: selectedUser.id,
+                status: selectedUser.status === "ACTIVE" ? "BLOCKED" : "ACTIVE",
+              });
+
+              setSelectedUser(null);
+            }}
+          />
         </div>
       </CardContent>
     </Card>
