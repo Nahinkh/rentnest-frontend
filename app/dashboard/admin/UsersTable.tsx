@@ -14,6 +14,7 @@ import { useUpdateUserStatus } from "@/hook/admin/useUpdateUserStatus";
 import { MoreHorizontal } from "lucide-react";
 import React, { useState } from "react";
 import ConfirmDialog from "../common/ConfirmDialog";
+import UserDetailsDialog from "@/components/dashboard/admin/UserDetailsDialog";
 export interface AdminUser {
   id: string;
   name: string;
@@ -47,6 +48,7 @@ const roleLabel = {
 const UsersTable = ({ users, isLoading }: UsersTableProps) => {
   const { mutate: updateUserStatus, isPending } = useUpdateUserStatus();
   const [selectedUser, setSelectedUser] = useState<AdminUser | null>(null);
+  const [userToUpdate, setUserToUpdate] = useState<AdminUser | null>(null);
   if (isLoading) {
     return (
       <Card className="rounded-2xl border-border/60">
@@ -182,11 +184,13 @@ const UsersTable = ({ users, isLoading }: UsersTableProps) => {
                       </DropdownMenuTrigger>
 
                       <DropdownMenuContent align="end" className="w-40">
-                        <DropdownMenuItem>View User</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setSelectedUser(user)}>
+                          View User
+                        </DropdownMenuItem>
 
                         <DropdownMenuSeparator />
 
-                        <DropdownMenuItem onClick={() => setSelectedUser(user)}>
+                        <DropdownMenuItem onClick={() => setUserToUpdate(user)}>
                           {user.status === "ACTIVE"
                             ? "Block User"
                             : "Activate User"}
@@ -259,38 +263,48 @@ const UsersTable = ({ users, isLoading }: UsersTableProps) => {
               </Button>
             </div>
           ))}
-          <ConfirmDialog  
+
+          <ConfirmDialog
+            open={Boolean(userToUpdate)}
+            onOpenChange={(open) => {
+              if (!open) {
+                setUserToUpdate(null);
+              }
+            }}
+            title={
+              userToUpdate?.status === "ACTIVE"
+                ? "Block this user?"
+                : "Activate this user?"
+            }
+            description={
+              userToUpdate?.status === "ACTIVE"
+                ? `Are you sure you want to block ${userToUpdate.name}?`
+                : `Are you sure you want to activate ${userToUpdate?.name}?`
+            }
+            cancelText={"Cancel"}
+            confirmText={
+              userToUpdate?.status === "ACTIVE" ? "Block User" : "Activate User"
+            }
+            destructive={userToUpdate?.status === "ACTIVE"}
+            loading={isPending}
+            onConfirm={() => {
+              if (!userToUpdate) return;
+
+              updateUserStatus({
+                userId: userToUpdate.id,
+                status: userToUpdate.status === "ACTIVE" ? "BLOCKED" : "ACTIVE",
+              });
+
+              setUserToUpdate(null);
+            }}
+          />
+          <UserDetailsDialog
+            user={selectedUser}
             open={Boolean(selectedUser)}
             onOpenChange={(open) => {
               if (!open) {
                 setSelectedUser(null);
               }
-            }}
-            title={
-              selectedUser?.status === "ACTIVE"
-                ? "Block this user?"
-                : "Activate this user?"
-            }
-            description={
-              selectedUser?.status === "ACTIVE"
-                ? `Are you sure you want to block ${selectedUser?.name}?`
-                : `Are you sure you want to activate ${selectedUser?.name}?`
-            }
-            confirmText={
-              selectedUser?.status === "ACTIVE" ? "Block User" : "Activate User"
-            }
-            cancelText="Cancel"
-            destructive={selectedUser?.status === "ACTIVE"}
-            loading={isPending}
-            onConfirm={() => {
-              if (!selectedUser) return;
-
-              updateUserStatus({
-                userId: selectedUser.id,
-                status: selectedUser.status === "ACTIVE" ? "BLOCKED" : "ACTIVE",
-              });
-
-              setSelectedUser(null);
             }}
           />
         </div>
