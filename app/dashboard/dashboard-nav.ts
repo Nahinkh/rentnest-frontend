@@ -3,6 +3,7 @@ import {
   CreditCard,
   FileText,
   History,
+  HistoryIcon,
   Home,
   LayoutDashboard,
   ShieldCheck,
@@ -95,9 +96,14 @@ export const dashboardNav = {
       icon: Building,
     },
     {
-      title: "Verifications",
-      href: "/dashboard/admin/verifications",
+      title: "Application Verifications",
+      href: "/dashboard/admin/applications",
       icon: ShieldCheck,
+    },
+    {
+      title: "Application History",
+      href: "/dashboard/admin/applications/history",
+      icon: HistoryIcon,
     },
   ],
 } as const;

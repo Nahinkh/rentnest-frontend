@@ -2,6 +2,7 @@
 import RoleProtectedRoute from "@/components/auth/RoleProtectedRoute";
 import GlobalError from "@/components/common/GlobalError";
 import GlobalLoader from "@/components/common/GlobalLoader";
+import LandlordApplicationCard from "@/components/dashboard/admin/LandlordApplicationCard";
 import { Button } from "@/components/ui/button";
 import { useLandlordApplications } from "@/hook/admin/useLandlordApplications";
 import { RefreshCw } from "lucide-react";
@@ -75,39 +76,10 @@ const ApplicationPage = () => {
         {applications.length > 0 && (
           <div className="grid gap-4">
             {applications.map((application) => (
-              <div
+              <LandlordApplicationCard
                 key={application.id}
-                className="rounded-2xl border border-border/60 bg-card p-5"
-              >
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
-                    <h2 className="font-semibold">{application.user.name}</h2>
-
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {application.user.email}
-                    </p>
-
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Applied{" "}
-                      {new Date(application.createdAt).toLocaleDateString(
-                        "en-BD",
-                      )}
-                    </p>
-                  </div>
-
-                  <span className="w-fit rounded-full bg-yellow-500/10 px-3 py-1 text-xs font-medium text-yellow-600 dark:text-yellow-400">
-                    Pending
-                  </span>
-                </div>
-
-                <div className="mt-4 border-t pt-4">
-                  <p className="text-sm font-medium">Application reason</p>
-
-                  <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                    {application.reason || "No reason provided."}
-                  </p>
-                </div>
-              </div>
+                application={application}
+              />
             ))}
           </div>
         )}

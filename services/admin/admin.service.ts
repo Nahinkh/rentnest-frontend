@@ -45,6 +45,10 @@ export interface LandlordApplication {
   updatedAt: string;
   user: LandlordApplicationUser;
 }
+export interface ReviewLandlordApplicationPayload {
+  status: "APPROVED" | "REJECTED";
+  rejectionReason?: string;
+}
 
 const getDashboardStats = async (): Promise<AdminDashboardStats> => {
   return api.get<AdminDashboardStats>(API_ENDPOINTS.ADMIN.DASHBOARD_STATS);
@@ -70,9 +74,28 @@ const getLandlordApplications = async (): Promise<LandlordApplication[]> => {
   );
 };
 
+const reviewLandlordApplication = async (
+  applicationId: string,
+  payload: ReviewLandlordApplicationPayload,
+) => {
+  return api.patch(
+    `${API_ENDPOINTS.ADMIN.LANDLORD_APPLICATIONS}/${applicationId}`,
+    payload,
+  );
+};
+const getLandlordApplicationHistory = async (): Promise<
+  LandlordApplication[]
+> => {
+  return api.get<LandlordApplication[]>(
+    API_ENDPOINTS.ADMIN.LANDLORD_APPLICATION_HISTORY,
+  );
+};
+
 export const adminService = {
   getDashboardStats,
   getUsers,
   updateUserStatus,
   getLandlordApplications,
+  reviewLandlordApplication,
+  getLandlordApplicationHistory,
 };

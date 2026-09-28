@@ -10,6 +10,7 @@ export const API_ENDPOINTS = {
     DASHBOARD_STATS: "/admin/dashboard-stats",
     USERS: "/admin/users",
     LANDLORD_APPLICATIONS: "/admin/landlord-applications",
+    LANDLORD_APPLICATION_HISTORY: "/admin/landlord-applications/history",
   },
 
   PROPERTY: {
