@@ -6,7 +6,10 @@
 import { API_ENDPOINTS } from "@/constants/api";
 import { api } from "@/lib/api";
 import { iLogin, iRegister, iUser } from "@/types/auth";
-
+export interface ApplyLandlordPayload {
+  reason?: string;
+  additionalInfo?: string;
+}
 export const authService = {
   loginUser: async (payload: iLogin) => {
     return api.post<iUser>(API_ENDPOINTS.AUTH.LOGIN, payload);
@@ -19,5 +22,8 @@ export const authService = {
   },
   logoutUser: async () => {
     return api.post(API_ENDPOINTS.AUTH.LOGOUT);
+  },
+  applyLandlord: async (payload: ApplyLandlordPayload) => {
+    return api.post(API_ENDPOINTS.AUTH.APPLY_LANDLORD, payload);
   },
 };

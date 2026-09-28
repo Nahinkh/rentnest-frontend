@@ -6,6 +6,7 @@ import UserMenu from "./UserMenu";
 import { PlusIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import LandlordCTA from "./LandlordCTA";
 
 const NavbarTop = () => {
   return (
@@ -16,19 +17,7 @@ const NavbarTop = () => {
       {/* Right Actions */}
       <div className="flex items-center gap-1.5 sm:gap-2">
         {/* List Your Property */}
-        <Button
-          
-          size="sm"
-          className="hidden h-9 rounded-full px-4 lg:inline-flex"
-        >
-          <Link
-            href="/dashboard/landlord/properties/add"
-            className="flex items-center gap-1.5"
-          >
-            <PlusIcon className="h-4 w-4" />
-            <span>List Your Property</span>
-          </Link>
-        </Button>
+        <LandlordCTA />
 
         {/* Location */}
         <LocationSelector />

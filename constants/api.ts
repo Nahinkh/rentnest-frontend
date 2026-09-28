@@ -5,6 +5,7 @@ export const API_ENDPOINTS = {
     PROFILE: "/auth/profile",
     LOGOUT: "/auth/logout",
     REFRESH: "/auth/refresh-token",
+    APPLY_LANDLORD: "/auth/apply-landlord",
   },
   ADMIN: {
     DASHBOARD_STATS: "/admin/dashboard-stats",

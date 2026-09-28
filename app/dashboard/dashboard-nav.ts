@@ -1,5 +1,6 @@
 import {
   Building,
+  Building2,
   CreditCard,
   FileText,
   History,
@@ -23,6 +24,11 @@ export const dashboardNav = {
       title: "My Properties",
       href: "/dashboard/tenant/my-properties",
       icon: Home,
+    },
+    {
+      title: "Apply Landlord",
+      href: "/dashboard/tenant/apply-landlord",
+      icon: Building2,
     },
     {
       title: "Request History",
