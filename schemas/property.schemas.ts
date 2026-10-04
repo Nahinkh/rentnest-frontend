@@ -13,7 +13,7 @@ export const propertySchema = z.object({
   latitude: z.coerce.number().min(-90).max(90),
   longitude: z.coerce.number().min(-180).max(180),
   category: z.string().min(1, "Category is required"),
-  categoryDescription: z.string().optional(),
+  categoryDescription: z.string(),
   images: z
     .array(z.instanceof(File))
     .min(1, "At least one image is required")

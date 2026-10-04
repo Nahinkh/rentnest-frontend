@@ -26,4 +26,7 @@ export const authService = {
   applyLandlord: async (payload: ApplyLandlordPayload) => {
     return api.post(API_ENDPOINTS.AUTH.APPLY_LANDLORD, payload);
   },
+  getMyLandlordApplication: async () => {
+    return api.get(API_ENDPOINTS.AUTH.MY_LANDLORD_APPLICATION);
+  }
 };

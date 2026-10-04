@@ -45,13 +45,11 @@ import { useAddProperty } from "@/hook/property/useProperty";
 import PropertyImageUpload from "./PropertyImageUpload";
 import { propertySchema } from "@/schemas/property.schemas";
 import DashboardHeader from "@/app/dashboard/common/DashboardHeader";
-import { IProperty } from "@/types/property";
 
-type PropertyFormValues = z.input<typeof propertySchema>;
+export type AddPropertyPayload = z.infer<typeof propertySchema>;
 
 const AddPropertyForm = () => {
-  const { mutate, isPending,isSuccess} = useAddProperty();
-
+  const { mutate, isPending, isSuccess } = useAddProperty();
 
   const {
     register,
@@ -59,7 +57,7 @@ const AddPropertyForm = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<PropertyFormValues>({
+  } = useForm<z.input<typeof propertySchema>, unknown, AddPropertyPayload>({
     resolver: zodResolver(propertySchema),
     defaultValues: {
       category: "Apartment",
@@ -69,8 +67,8 @@ const AddPropertyForm = () => {
 
   const images = watch("images") ?? [];
 
-  const onSubmit = (data: PropertyFormValues) => {
-    mutate(data as unknown as IProperty);
+  const onSubmit = (data: AddPropertyPayload) => {
+    mutate(data);
   };
 
   return (
@@ -198,9 +196,9 @@ const AddPropertyForm = () => {
 
               <CardContent className="px-5 py-6 sm:px-6">
                 <PropertyImageUpload
-                  value={images as any as File[]}
+                  value={images}
                   onChange={(files) =>
-                    setValue("images", files as any, {
+                    setValue("images", files, {
                       shouldValidate: true,
                       shouldDirty: true,
                     })

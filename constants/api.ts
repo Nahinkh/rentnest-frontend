@@ -6,6 +6,7 @@ export const API_ENDPOINTS = {
     LOGOUT: "/auth/logout",
     REFRESH: "/auth/refresh-token",
     APPLY_LANDLORD: "/auth/apply-landlord",
+    MY_LANDLORD_APPLICATION: "/auth/landlord-application",
   },
   ADMIN: {
     DASHBOARD_STATS: "/admin/dashboard-stats",

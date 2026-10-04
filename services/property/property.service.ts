@@ -1,41 +1,29 @@
-import { API_ENDPOINTS } from "@/constants/api"
-import { api } from "@/lib/api"
-import { IProperty } from "@/types/property"
+import { API_ENDPOINTS } from "@/constants/api";
+import { api } from "@/lib/api";
+import { AddPropertyPayload, IProperty } from "@/types/property";
 
 export const propertyService = {
-    getProperties(){
-        return api.get<IProperty[]>(API_ENDPOINTS.PROPERTY.ALL)
-    },
-    getPropertyById(id: string){
-        return api.get<IProperty>(API_ENDPOINTS.PROPERTY.SINGLE(id))
-    },
-    addProperty(data:IProperty){
-         const formData = new FormData();
-         console.log(data)
+  getProperties() {
+    return api.get<IProperty[]>(API_ENDPOINTS.PROPERTY.ALL);
+  },
+  getPropertyById(id: string) {
+    return api.get<IProperty>(API_ENDPOINTS.PROPERTY.SINGLE(id));
+  },
+  addProperty(data: AddPropertyPayload): Promise<IProperty> {
+    const formData = new FormData();
+    console.log(data);
 
     formData.append("title", data.title);
     formData.append("description", data.description);
 
-    formData.append(
-      "rentPrice",
-      String(data.rentPrice)
-    );
+    formData.append("rentPrice", String(data.rentPrice));
 
-    formData.append(
-      "bedrooms",
-      String(data.bedrooms)
-    );
+    formData.append("bedrooms", String(data.bedrooms));
 
-    formData.append(
-      "bathrooms",
-      String(data.bathrooms)
-    );
+    formData.append("bathrooms", String(data.bathrooms));
 
     if (data.area !== undefined) {
-      formData.append(
-        "area",
-        String(data.area)
-      );
+      formData.append("area", String(data.area));
     }
 
     formData.append("address", data.address);
@@ -43,35 +31,23 @@ export const propertyService = {
     formData.append("division", data.division);
 
     if (data.latitude !== undefined) {
-      formData.append(
-        "latitude",
-        String(data.latitude)
-      );
+      formData.append("latitude", String(data.latitude));
     }
 
     if (data.longitude !== undefined) {
-      formData.append(
-        "longitude",
-        String(data.longitude)
-      );
+      formData.append("longitude", String(data.longitude));
     }
 
-    formData.append(
-      "category",
-      String(data.category)
-    );
+    formData.append("category", String(data.category));
 
     // Multiple images
     data.images.forEach((file) => {
       formData.append("images", file);
     });
 
-    return api.post<IProperty>(
-      API_ENDPOINTS.PROPERTY.ADD,
-      formData
-    );
+    return api.post<IProperty>(API_ENDPOINTS.PROPERTY.ADD, formData);
   },
-    getPropertiesByLandlord(){
-        return api.get<IProperty[]>(API_ENDPOINTS.PROPERTY.BY_LANDLORD)
-    }
-}
+  getPropertiesByLandlord() {
+    return api.get<IProperty[]>(API_ENDPOINTS.PROPERTY.BY_LANDLORD);
+  },
+};
